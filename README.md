@@ -1,5 +1,9 @@
 # react-todo
 
+## *Check commit history for different iterations*
+
+![Preview](/public/preview.png)
+
 ### React tutorial
 https://scrimba.com/g/glearnreact
 
