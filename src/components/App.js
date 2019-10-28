@@ -1,48 +1,45 @@
-import React from 'react';
-import ToDoItem from './ToDoItem.js'
-import todosData from './todosData.js'
+import React from "react";
+import ToDoItem from "./ToDoItem.js";
+import todosData from "./todosData.js";
 
 class App extends React.Component {
-  constructor(){
-    super()
+  constructor() {
+    super();
     this.state = {
       todos: todosData
-    }
-    this.handleChange = this.handleChange.bind(this)
+    };
+    this.handleChange = this.handleChange.bind(this);
   }
 
   handleChange(id) {
-    console.log("works",id)
+    console.log("works", id);
     this.setState(prevState => {
-      const newToDosData = prevState.todos.map((todo) => {
-        if (todo.id === id){
-          todo.completed = !todo.completed
+      const newToDosData = prevState.todos.map(todo => {
+        if (todo.id === id) {
+          return {
+            // use these 2 lines
+            id: todo.id,
+            text: todo.text,
+            // OR use spread syntax
+            // ...todo,
+            completed: !todo.completed
+          };
         }
-        return todo
-      })
+        return todo;
+      });
       return {
         todos: newToDosData
-      }
-    })
+      };
+    });
   }
 
-  render(){
-    const todoItems = this.state.todos.map(item => 
-      <ToDoItem 
-        key={item.id} 
-        item={item}
-        handleChange={this.handleChange}/>)
-  
-    return (
-      <div className="todo-list">
-        {todoItems}
-      </div>
-    )
+  render() {
+    const todoItems = this.state.todos.map(item => (
+      <ToDoItem key={item.id} item={item} handleChange={this.handleChange} />
+    ));
+
+    return <div className="todo-list">{todoItems}</div>;
   }
-
-
 }
 
-
-
-export default App
+export default App;
